@@ -7,7 +7,7 @@ import { test, expect } from '@playwright/test';
 test.describe('DetailCard', () => {
   test.beforeEach(async ({ page }) => {
     await page.goto('/');
-    await expect(page.locator('text=赛车装备配置系统')).toBeVisible();
+    await expect(page.locator('text=KART EQUIPMENT')).toBeVisible();
   });
 
   test.describe('Desktop Hover', () => {

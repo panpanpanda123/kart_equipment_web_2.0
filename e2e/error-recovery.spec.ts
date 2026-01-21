@@ -43,7 +43,7 @@ test.describe('Error Recovery', () => {
     await page.locator('button:has-text("重试")').click();
     
     // Should load successfully
-    await expect(page.locator('text=赛车装备配置系统')).toBeVisible();
+    await expect(page.locator('text=KART EQUIPMENT')).toBeVisible();
     await expect(page.locator('img[alt="赛车手"]')).toBeVisible();
   });
 
@@ -64,7 +64,7 @@ test.describe('Error Recovery', () => {
     await page.goto('/');
     
     // App should still load (graceful degradation)
-    await expect(page.locator('text=赛车装备配置系统')).toBeVisible();
+    await expect(page.locator('text=KART EQUIPMENT')).toBeVisible();
     
     // Should be able to equip items (just won't persist)
     const helmetCard = page.locator('[aria-label*="头盔"]').first();
@@ -90,7 +90,7 @@ test.describe('Error Recovery', () => {
     await page.goto('/');
     
     // App should load and filter out invalid items
-    await expect(page.locator('text=赛车装备配置系统')).toBeVisible();
+    await expect(page.locator('text=KART EQUIPMENT')).toBeVisible();
     
     // Invalid items should be filtered out
     // Status bar should show 0 equipped (or only valid ones)
@@ -100,7 +100,7 @@ test.describe('Error Recovery', () => {
   test('should handle network errors gracefully', async ({ page }) => {
     // Load app first
     await page.goto('/');
-    await expect(page.locator('text=赛车装备配置系统')).toBeVisible();
+    await expect(page.locator('text=KART EQUIPMENT')).toBeVisible();
     
     // Now simulate network going offline
     await page.context().setOffline(true);
@@ -117,7 +117,7 @@ test.describe('Error Recovery', () => {
 
   test('should handle rapid interactions without breaking', async ({ page }) => {
     await page.goto('/');
-    await expect(page.locator('text=赛车装备配置系统')).toBeVisible();
+    await expect(page.locator('text=KART EQUIPMENT')).toBeVisible();
     
     // Rapidly click multiple items
     const cards = page.locator('[aria-label^="选择装备"]');
@@ -126,7 +126,7 @@ test.describe('Error Recovery', () => {
     }
     
     // App should not crash
-    await expect(page.locator('text=赛车装备配置系统')).toBeVisible();
+    await expect(page.locator('text=KART EQUIPMENT')).toBeVisible();
     
     // Only last item should be selected (single selection invariant)
     const selectedCards = page.locator('[aria-pressed="true"]');

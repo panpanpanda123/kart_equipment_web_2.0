@@ -9,7 +9,7 @@ test.describe('Equipment Flow', () => {
     await page.goto('/');
     
     // Wait for app to load
-    await expect(page.locator('text=赛车装备配置系统')).toBeVisible();
+    await expect(page.locator('text=KART EQUIPMENT')).toBeVisible();
   });
 
   test('should load configuration and display slots and equipment', async ({ page }) => {
