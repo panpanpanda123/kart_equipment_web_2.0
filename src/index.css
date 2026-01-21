@@ -1,0 +1,59 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  /* Pixel-art base styles */
+  * {
+    image-rendering: pixelated;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: crisp-edges;
+  }
+
+  body {
+    @apply m-0 min-h-screen bg-gray-100;
+    font-family: 'Press Start 2P', 'Courier New', monospace;
+  }
+
+  /* Disable smooth font rendering for pixel-art aesthetic */
+  body, button, input, select, textarea {
+    -webkit-font-smoothing: none;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+@layer components {
+  /* Pixel-art button style */
+  .pixel-button {
+    @apply border-2 border-black bg-white px-4 py-2 font-bold uppercase;
+    box-shadow: 2px 2px 0px 0px rgba(0, 0, 0, 1);
+  }
+
+  .pixel-button:hover {
+    @apply bg-gray-100;
+  }
+
+  .pixel-button:active {
+    box-shadow: 1px 1px 0px 0px rgba(0, 0, 0, 1);
+    transform: translate(1px, 1px);
+  }
+
+  /* Pixel-art card style */
+  .pixel-card {
+    @apply border-2 border-black bg-white;
+    box-shadow: 2px 2px 0px 0px rgba(0, 0, 0, 1);
+  }
+
+  /* Pixel-art border utilities */
+  .pixel-border {
+    @apply border-2 border-black;
+    box-shadow: 2px 2px 0px 0px rgba(0, 0, 0, 1);
+  }
+
+  /* Explicit pixelated image rendering */
+  .pixelated {
+    image-rendering: pixelated;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: crisp-edges;
+  }
+}
