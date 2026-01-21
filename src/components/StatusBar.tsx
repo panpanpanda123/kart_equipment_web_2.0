@@ -55,7 +55,7 @@ export function StatusBar({ equippedItems, slots, onReset }: StatusBarProps) {
           {/* Completeness indicator - green checkmark when all required slots filled */}
           {isComplete && (
             <span 
-              className="text-green-600 font-bold text-lg"
+              className="inline-flex items-center justify-center w-6 h-6 bg-green-500 text-white font-bold text-sm rounded-full animate-in zoom-in duration-300 shadow-[0_0_8px_rgba(34,197,94,0.5)]"
               title="所有必选槽位已装配"
               aria-label="配置完整"
             >
@@ -67,7 +67,7 @@ export function StatusBar({ equippedItems, slots, onReset }: StatusBarProps) {
         {/* Reset button with pixel-art styling */}
         <button
           onClick={onReset}
-          className="bg-white border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] px-4 py-2 text-sm font-medium hover:bg-gray-50 active:shadow-none active:translate-x-[2px] active:translate-y-[2px] transition-all"
+          className="bg-white border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] px-4 py-2 text-sm font-medium hover:bg-gray-50 hover:shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] hover:scale-105 active:shadow-none active:translate-x-[2px] active:translate-y-[2px] transition-all duration-150"
           aria-label="重置所有装备"
         >
           Reset

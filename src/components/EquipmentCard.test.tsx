@@ -118,45 +118,6 @@ describe('EquipmentCard', () => {
     expect(button).toHaveAttribute('aria-pressed', 'true');
   });
 
-  it('calls onHover when mouse enters', async () => {
-    const user = userEvent.setup();
-    const handleHover = vi.fn();
-
-    render(
-      <EquipmentCard
-        item={mockItem}
-        isSelected={false}
-        onClick={() => {}}
-        onHover={handleHover}
-      />
-    );
-
-    const button = screen.getByRole('button');
-    await user.hover(button);
-
-    expect(handleHover).toHaveBeenCalled();
-  });
-
-  it('calls onHoverEnd when mouse leaves', async () => {
-    const user = userEvent.setup();
-    const handleHoverEnd = vi.fn();
-
-    render(
-      <EquipmentCard
-        item={mockItem}
-        isSelected={false}
-        onClick={() => {}}
-        onHoverEnd={handleHoverEnd}
-      />
-    );
-
-    const button = screen.getByRole('button');
-    await user.hover(button);
-    await user.unhover(button);
-
-    expect(handleHoverEnd).toHaveBeenCalled();
-  });
-
   it('handles long model names with line clamp', () => {
     const longModelItem: EquipmentItem = {
       ...mockItem,

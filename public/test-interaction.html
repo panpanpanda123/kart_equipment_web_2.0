@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>交互测试页面</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 800px;
+      margin: 50px auto;
+      padding: 20px;
+      background: #f5f5f5;
+    }
+    .test-section {
+      background: white;
+      padding: 20px;
+      margin: 20px 0;
+      border: 2px solid #333;
+      box-shadow: 4px 4px 0 rgba(0,0,0,0.2);
+    }
+    .test-button {
+      background: white;
+      border: 2px solid black;
+      padding: 10px 20px;
+      margin: 10px;
+      cursor: pointer;
+      font-size: 16px;
+      box-shadow: 2px 2px 0 rgba(0,0,0,1);
+    }
+    .test-button:hover {
+      background: #f0f0f0;
+    }
+    .test-button:active {
+      box-shadow: 1px 1px 0 rgba(0,0,0,1);
+      transform: translate(1px, 1px);
+    }
+    .test-button.selected {
+      border-color: blue;
+      box-shadow: 3px 3px 0 rgba(37,99,235,1);
+    }
+    .status {
+      padding: 10px;
+      background: #e3f2fd;
+      border-left: 4px solid #2196f3;
+      margin: 10px 0;
+    }
+    .log {
+      background: #263238;
+      color: #aed581;
+      padding: 15px;
+      font-family: 'Courier New', monospace;
+      font-size: 12px;
+      max-height: 300px;
+      overflow-y: auto;
+      margin: 10px 0;
+    }
+    .log-entry {
+      margin: 5px 0;
+    }
+  </style>
+</head>
+<body>
+  <h1>🧪 装备配置系统 - 交互测试</h1>
+  
+  <div class="test-section">
+    <h2>测试1: 基本点击事件</h2>
+    <p>点击下面的按钮，观察是否有反应</p>
+    <button class="test-button" onclick="testClick(1)">测试按钮 1</button>
+    <button class="test-button" onclick="testClick(2)">测试按钮 2</button>
+    <button class="test-button" onclick="testClick(3)">测试按钮 3</button>
+    <div class="status" id="click-status">等待点击...</div>
+  </div>
+
+  <div class="test-section">
+    <h2>测试2: 选择状态切换</h2>
+    <p>点击按钮切换选中状态（模拟装备选择）</p>
+    <button class="test-button" id="select-btn-1" onclick="toggleSelect(1)">装备 1</button>
+    <button class="test-button" id="select-btn-2" onclick="toggleSelect(2)">装备 2</button>
+    <button class="test-button" id="select-btn-3" onclick="toggleSelect(3)">装备 3</button>
+    <div class="status" id="select-status">当前选中: 无</div>
+  </div>
+
+  <div class="test-section">
+    <h2>测试3: 双步骤操作（模拟装配流程）</h2>
+    <p><strong>步骤1:</strong> 先点击下方的装备按钮选择</p>
+    <button class="test-button" id="equip-btn-1" onclick="selectEquipment(1)">头盔</button>
+    <button class="test-button" id="equip-btn-2" onclick="selectEquipment(2)">手套</button>
+    <button class="test-button" id="equip-btn-3" onclick="selectEquipment(3)">护肋</button>
+    
+    <p><strong>步骤2:</strong> 然后点击槽位按钮装配</p>
+    <button class="test-button" onclick="equipToSlot('slot-1')">槽位 1</button>
+    <button class="test-button" onclick="equipToSlot('slot-2')">槽位 2</button>
+    <button class="test-button" onclick="equipToSlot('slot-3')">槽位 3</button>
+    
+    <div class="status" id="equip-status">
+      <div>当前选中装备: <span id="selected-equip">无</span></div>
+      <div>已装配: <span id="equipped-list">无</span></div>
+    </div>
+  </div>
+
+  <div class="test-section">
+    <h2>📊 操作日志</h2>
+    <button class="test-button" onclick="clearLog()">清空日志</button>
+    <div class="log" id="log"></div>
+  </div>
+
+  <div class="test-section">
+    <h2>🔗 返回主应用</h2>
+    <p>如果以上测试都正常工作，说明浏览器的点击事件没有问题</p>
+    <a href="/" class="test-button" style="display: inline-block; text-decoration: none; color: black;">
+      返回装备配置系统
+    </a>
+  </div>
+
+  <script>
+    let clickCount = 0;
+    let selectedId = null;
+    let selectedEquipment = null;
+    let equippedItems = {};
+
+    function log(message, type = 'info') {
+      const logDiv = document.getElementById('log');
+      const entry = document.createElement('div');
+      entry.className = 'log-entry';
+      const timestamp = new Date().toLocaleTimeString();
+      entry.textContent = `[${timestamp}] ${message}`;
+      logDiv.appendChild(entry);
+      logDiv.scrollTop = logDiv.scrollHeight;
+    }
+
+    function clearLog() {
+      document.getElementById('log').innerHTML = '';
+      log('日志已清空');
+    }
+
+    function testClick(id) {
+      clickCount++;
+      document.getElementById('click-status').textContent = 
+        `按钮 ${id} 被点击了！总点击次数: ${clickCount}`;
+      log(`✅ 测试按钮 ${id} 点击成功`);
+    }
+
+    function toggleSelect(id) {
+      // 清除所有选中状态
+      for (let i = 1; i <= 3; i++) {
+        document.getElementById(`select-btn-${i}`).classList.remove('selected');
+      }
+      
+      // 切换选中状态
+      if (selectedId === id) {
+        selectedId = null;
+        document.getElementById('select-status').textContent = '当前选中: 无';
+        log(`❌ 取消选中装备 ${id}`);
+      } else {
+        selectedId = id;
+        document.getElementById(`select-btn-${id}`).classList.add('selected');
+        document.getElementById('select-status').textContent = `当前选中: 装备 ${id}`;
+        log(`✅ 选中装备 ${id}`);
+      }
+    }
+
+    function selectEquipment(id) {
+      // 清除所有选中状态
+      for (let i = 1; i <= 3; i++) {
+        const btn = document.getElementById(`equip-btn-${i}`);
+        if (btn) btn.classList.remove('selected');
+      }
+      
+      // 切换选中状态
+      if (selectedEquipment === id) {
+        selectedEquipment = null;
+        document.getElementById('selected-equip').textContent = '无';
+        log(`❌ 取消选中装备 ${id}`);
+      } else {
+        selectedEquipment = id;
+        document.getElementById(`equip-btn-${id}`).classList.add('selected');
+        const names = { 1: '头盔', 2: '手套', 3: '护肋' };
+        document.getElementById('selected-equip').textContent = names[id];
+        log(`✅ 选中装备: ${names[id]}`);
+      }
+    }
+
+    function equipToSlot(slotId) {
+      if (selectedEquipment === null) {
+        alert('请先选择一个装备！');
+        log(`⚠️ 尝试装配到${slotId}，但没有选中装备`);
+        return;
+      }
+      
+      const names = { 1: '头盔', 2: '手套', 3: '护肋' };
+      equippedItems[slotId] = names[selectedEquipment];
+      
+      // 更新显示
+      const equipped = Object.entries(equippedItems)
+        .map(([slot, item]) => `${slot}: ${item}`)
+        .join(', ');
+      document.getElementById('equipped-list').textContent = equipped || '无';
+      
+      log(`✅ 装配成功: ${names[selectedEquipment]} → ${slotId}`);
+      log(`📊 当前已装配: ${Object.keys(equippedItems).length} 件`);
+      
+      // 清除选中状态
+      for (let i = 1; i <= 3; i++) {
+        const btn = document.getElementById(`equip-btn-${i}`);
+        if (btn) btn.classList.remove('selected');
+      }
+      selectedEquipment = null;
+      document.getElementById('selected-equip').textContent = '无';
+    }
+
+    // 初始化日志
+    log('🚀 测试页面加载完成');
+    log('📝 请按照说明进行测试');
+  </script>
+</body>
+</html>

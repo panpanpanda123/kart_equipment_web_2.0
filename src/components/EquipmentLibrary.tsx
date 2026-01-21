@@ -5,6 +5,7 @@ interface EquipmentLibraryProps {
   items: EquipmentItem[];
   selectedItemId: string | null;
   onItemSelect: (itemId: string) => void;
+  onItemDoubleClick: (itemId: string) => void;
 }
 
 /**
@@ -27,16 +28,17 @@ export function EquipmentLibrary({
   items,
   selectedItemId,
   onItemSelect,
+  onItemDoubleClick,
 }: EquipmentLibraryProps) {
   return (
     <div className="w-full h-full overflow-y-auto p-4">
-      {/* Responsive grid layout with auto-fill */}
+      {/* Responsive grid layout with smaller cards for more content */}
       <div
         className="
-          grid gap-4
-          grid-cols-[repeat(auto-fill,minmax(120px,1fr))]
-          sm:grid-cols-[repeat(auto-fill,minmax(140px,1fr))]
-          md:grid-cols-[repeat(auto-fill,minmax(160px,1fr))]
+          grid gap-3
+          grid-cols-[repeat(auto-fill,minmax(90px,1fr))]
+          sm:grid-cols-[repeat(auto-fill,minmax(100px,1fr))]
+          md:grid-cols-[repeat(auto-fill,minmax(110px,1fr))]
         "
       >
         {items.map((item) => (
@@ -45,6 +47,7 @@ export function EquipmentLibrary({
             item={item}
             isSelected={selectedItemId === item.id}
             onClick={() => onItemSelect(item.id)}
+            onDoubleClick={() => onItemDoubleClick(item.id)}
           />
         ))}
       </div>

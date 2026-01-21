@@ -16,9 +16,13 @@ interface ToastProps {
 export function Toast({ message, isVisible, duration = 3000, onClose }: ToastProps) {
   const [show, setShow] = useState(isVisible);
 
+  // Sync visibility state
   useEffect(() => {
     setShow(isVisible);
+  }, [isVisible]);
 
+  // Auto-dismiss timer
+  useEffect(() => {
     if (isVisible) {
       const timer = setTimeout(() => {
         setShow(false);
@@ -35,11 +39,11 @@ export function Toast({ message, isVisible, duration = 3000, onClose }: ToastPro
 
   return (
     <div
-      className="fixed bottom-20 left-1/2 transform -translate-x-1/2 z-50 animate-in fade-in slide-in-from-bottom-2 duration-200"
+      className="fixed bottom-20 left-1/2 transform -translate-x-1/2 z-50 animate-in fade-in slide-in-from-bottom-4 duration-300"
       role="alert"
       aria-live="polite"
     >
-      <div className="bg-white border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] px-4 py-3 min-w-[200px] max-w-[90vw] text-center">
+      <div className="bg-white border-2 border-black shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] px-4 py-3 min-w-[200px] max-w-[90vw] text-center">
         <p className="text-sm font-medium text-black">{message}</p>
       </div>
     </div>

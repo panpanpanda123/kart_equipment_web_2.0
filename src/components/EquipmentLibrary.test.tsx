@@ -6,7 +6,7 @@ import type { EquipmentItem } from '../types';
 
 // Mock EquipmentCard component
 vi.mock('./EquipmentCard', () => ({
-  EquipmentCard: ({ item, isSelected, onClick }: any) => (
+  EquipmentCard: ({ item, isSelected, onClick }: { item: EquipmentItem; isSelected: boolean; onClick: () => void }) => (
     <button
       data-testid={`equipment-card-${item.id}`}
       data-selected={isSelected}
@@ -143,7 +143,7 @@ describe('EquipmentLibrary', () => {
     // Check that grid container exists
     const gridContainer = container.querySelector('.grid');
     expect(gridContainer).toBeInTheDocument();
-    expect(gridContainer).toHaveClass('gap-4');
+    expect(gridContainer).toHaveClass('gap-3');
   });
 
   it('handles large number of items', () => {

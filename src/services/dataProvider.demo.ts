@@ -52,7 +52,7 @@ async function errorHandling() {
   
   try {
     const config = await provider.loadConfig();
-    console.log('Config loaded successfully');
+    console.log('Config loaded successfully', config.items.length, 'items');
   } catch (error) {
     if (error instanceof Error) {
       console.error('Error message:', error.message);

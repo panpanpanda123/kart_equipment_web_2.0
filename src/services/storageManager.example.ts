@@ -236,7 +236,7 @@ export function runAllExamples() {
 
 // Export for browser console usage
 if (typeof window !== 'undefined') {
-  (window as any).storageManagerExamples = {
+  (window as Record<string, unknown>).storageManagerExamples = {
     runAll: runAllExamples,
     appInit: exampleAppInitialization,
     equipItem: exampleEquipItem,

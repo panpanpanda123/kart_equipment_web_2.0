@@ -51,7 +51,7 @@ describe('Toast Component', () => {
     
     expect(toastElement).toHaveClass('border-2');
     expect(toastElement).toHaveClass('border-black');
-    expect(toastElement).toHaveClass('shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]');
+    expect(toastElement).toHaveClass('shadow-[3px_3px_0px_0px_rgba(0,0,0,1)]');
   });
 
   it('should have proper accessibility attributes', () => {

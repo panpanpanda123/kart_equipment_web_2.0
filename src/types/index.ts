@@ -49,8 +49,8 @@ export interface SlotConfig {
 }
 
 /**
- * Equipment item data structure (Phase 1 - MVP fields only)
- * Phase 2 fields (certComparison, advantages, disadvantages, applicableScenarios) are not included
+ * Equipment item data structure
+ * Includes Phase 1 MVP fields and Phase 2 detail fields
  */
 export interface EquipmentItem {
   /** Unique equipment identifier */
@@ -98,6 +98,20 @@ export interface EquipmentItem {
    * Empty array or undefined means no restriction (can be equipped to any compatible slot)
    */
   allowedSlots?: string[];
+  
+  // Phase 2 fields for DetailCard
+  
+  /** Optional certification comparison explanation */
+  certComparison?: string;
+  
+  /** Optional list of advantages */
+  advantages?: string[];
+  
+  /** Optional list of disadvantages */
+  disadvantages?: string[];
+  
+  /** Optional applicable scenarios description */
+  applicableScenarios?: string;
 }
 
 /**
@@ -128,7 +142,7 @@ export interface ConfigData {
   };
   
   /** Placeholder for future achievements feature */
-  achievements: any;
+  achievements: Record<string, unknown>;
 }
 
 /**

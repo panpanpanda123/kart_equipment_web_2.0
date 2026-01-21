@@ -1,1 +1,46 @@
 /* App-specific styles */
+
+/* Mobile touch optimization */
+@media (max-width: 767px) {
+  /* Ensure minimum touch target size of 44x44px */
+  button {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  /* Improve touch feedback */
+  button:active {
+    transform: scale(0.98);
+  }
+
+  /* Prevent text selection during drag */
+  * {
+    -webkit-user-select: none;
+    user-select: none;
+    -webkit-touch-callout: none;
+  }
+
+  /* Allow text selection for specific elements */
+  input,
+  textarea {
+    -webkit-user-select: text;
+    user-select: text;
+  }
+}
+
+/* Accessibility improvements */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Focus visible for keyboard navigation */
+button:focus-visible {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}

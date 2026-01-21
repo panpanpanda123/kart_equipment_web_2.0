@@ -75,28 +75,34 @@ export class LocalJsonDataProvider implements DataProvider {
    * @param data Raw configuration data
    * @throws Error if structural validation fails
    */
-  private validateStructuralData(data: any): void {
+  private validateStructuralData(data: unknown): void {
+    if (!data || typeof data !== 'object') {
+      throw new Error('Invalid configuration: data must be an object');
+    }
+
+    const config = data as Record<string, unknown>;
     // Critical: character configuration must be valid
-    if (!data.character || typeof data.character !== 'object') {
+    if (!config.character || typeof config.character !== 'object') {
       throw new Error('Invalid configuration: character section is missing or invalid');
     }
     
-    if (!data.character.image || typeof data.character.image !== 'string') {
+    const character = config.character as Record<string, unknown>;
+    if (!character.image || typeof character.image !== 'string') {
       throw new Error('Invalid configuration: character.image is missing or invalid');
     }
     
     // Critical: must have exactly 10 slots
-    if (!Array.isArray(data.slots)) {
+    if (!Array.isArray(config.slots)) {
       throw new Error('Invalid configuration: slots must be an array');
     }
     
-    if (data.slots.length !== 10) {
-      throw new Error(`Invalid configuration: must contain exactly 10 slots, found ${data.slots.length}`);
+    if (config.slots.length !== 10) {
+      throw new Error(`Invalid configuration: must contain exactly 10 slots, found ${config.slots.length}`);
     }
     
     // Critical: all slots must have non-empty allowedTypes
-    for (let i = 0; i < data.slots.length; i++) {
-      const slot = data.slots[i];
+    for (let i = 0; i < config.slots.length; i++) {
+      const slot = config.slots[i] as Record<string, unknown>;
       
       if (!slot.id || typeof slot.id !== 'string') {
         throw new Error(`Invalid configuration: slot at index ${i} has missing or invalid id`);
@@ -112,7 +118,7 @@ export class LocalJsonDataProvider implements DataProvider {
     }
     
     // Critical: ui configuration must exist
-    if (!data.ui || typeof data.ui !== 'object') {
+    if (!config.ui || typeof config.ui !== 'object') {
       throw new Error('Invalid configuration: ui section is missing or invalid');
     }
   }
@@ -127,13 +133,13 @@ export class LocalJsonDataProvider implements DataProvider {
    * @param items Raw items array
    * @returns Array of valid EquipmentItem objects
    */
-  private filterValidItems(items: any[]): EquipmentItem[] {
+  private filterValidItems(items: unknown): EquipmentItem[] {
     if (!Array.isArray(items)) {
       console.warn('Items is not an array, using empty array');
       return [];
     }
     
-    const validItems = items.filter((item, index) => {
+    const validItems = items.filter((item: unknown, index: number) => {
       // Check all required fields
       const hasRequiredFields = 
         item &&

@@ -240,7 +240,7 @@ export function runAllDemos() {
 
 // Export for browser console usage
 if (typeof window !== 'undefined') {
-  (window as any).storageManagerDemo = {
+  (window as Record<string, unknown>).storageManagerDemo = {
     runAll: runAllDemos,
     basicOperations: demoBasicOperations,
     invalidItemFiltering: demoInvalidItemFiltering,

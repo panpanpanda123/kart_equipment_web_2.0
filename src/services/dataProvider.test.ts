@@ -10,7 +10,6 @@
 
 import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
 import { LocalJsonDataProvider } from './dataProvider';
-import type { ConfigData } from '../types';
 
 describe('LocalJsonDataProvider', () => {
   let provider: LocalJsonDataProvider;

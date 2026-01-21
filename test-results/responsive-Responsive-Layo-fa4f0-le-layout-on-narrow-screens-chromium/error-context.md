@@ -1,0 +1,98 @@
+# Page snapshot
+
+```yaml
+- generic [ref=e3]:
+  - generic [ref=e4]:
+    - generic [ref=e7]:
+      - img "赛车手" [ref=e8]
+      - button "头盔槽, 空槽位" [ref=e9]:
+        - generic [ref=e10]: "*"
+        - generic [ref=e12]: 头盔
+      - button "头套槽, 空槽位" [ref=e13]:
+        - generic [ref=e15]: 头套
+      - button "手套槽, 空槽位" [ref=e16]:
+        - generic [ref=e18]: 手套
+      - button "赛车服槽, 空槽位" [ref=e19]:
+        - generic [ref=e21]: 赛车服
+      - button "护肋槽, 空槽位" [ref=e22]:
+        - generic [ref=e23]: "*"
+        - generic [ref=e25]: 护肋
+      - button "赛车鞋槽, 空槽位" [ref=e26]:
+        - generic [ref=e28]: 赛车鞋
+      - button "饰品槽1, 空槽位" [ref=e29]:
+        - generic [ref=e31]: 饰品
+      - button "饰品槽2, 空槽位" [ref=e32]:
+        - generic [ref=e34]: 饰品
+      - button "饰品槽3, 空槽位" [ref=e35]:
+        - generic [ref=e37]: 饰品
+      - button "饰品槽4, 空槽位" [ref=e38]:
+        - generic [ref=e40]: 饰品
+    - generic [ref=e43]:
+      - 'button "选择装备: Arai GP-7RC 碳纤维头盔" [ref=e44]':
+        - generic [ref=e45]:
+          - img "Arai GP-7RC 碳纤维头盔"
+        - generic [ref=e47]: GP-7RC
+      - 'button "选择装备: Bell HP7 赛车头盔" [ref=e48]':
+        - generic [ref=e49]:
+          - img "Bell HP7 赛车头盔"
+        - generic [ref=e51]: HP7
+      - 'button "选择装备: Stilo ST5 GT 碳纤维头盔" [ref=e52]':
+        - generic [ref=e53]:
+          - img "Stilo ST5 GT 碳纤维头盔"
+        - generic [ref=e55]: ST5 GT
+      - 'button "选择装备: Sparco Prime H 阻燃头套" [ref=e56]':
+        - generic [ref=e57]:
+          - img "Sparco Prime H 阻燃头套"
+        - generic [ref=e59]: Prime H
+      - 'button "选择装备: Alpinestars Race v3 头套" [ref=e60]':
+        - generic [ref=e61]:
+          - img "Alpinestars Race v3 头套"
+        - generic [ref=e63]: Race v3
+      - 'button "选择装备: Sparco Arrow RG-7 赛车手套" [ref=e64]':
+        - generic [ref=e65]:
+          - img "Sparco Arrow RG-7 赛车手套"
+        - generic [ref=e67]: Arrow RG-7
+      - 'button "选择装备: Alpinestars Tech-1 K Race v2" [ref=e68]':
+        - generic [ref=e69]:
+          - img "Alpinestars Tech-1 K Race v2"
+        - generic [ref=e71]: Tech-1 K Race v2
+      - 'button "选择装备: Sparco Prime SP-16 赛车服" [ref=e72]':
+        - generic [ref=e73]:
+          - img "Sparco Prime SP-16 赛车服"
+        - generic [ref=e75]: Prime SP-16
+      - 'button "选择装备: Alpinestars GP Tech v3" [ref=e76]':
+        - generic [ref=e77]:
+          - img "Alpinestars GP Tech v3"
+        - generic [ref=e79]: GP Tech v3
+      - 'button "选择装备: Bengio BRV Pro 护肋背心" [ref=e80]':
+        - generic [ref=e81]:
+          - img "Bengio BRV Pro 护肋背心"
+        - generic [ref=e83]: BRV Pro
+      - 'button "选择装备: Stand 21 P1 护肋" [ref=e84]':
+        - generic [ref=e85]:
+          - img "Stand 21 P1 护肋"
+        - generic [ref=e87]: P1 Rib Protector
+      - 'button "选择装备: Puma Speedcat Pro 赛车鞋" [ref=e88]':
+        - generic [ref=e89]:
+          - img "Puma Speedcat Pro 赛车鞋"
+        - generic [ref=e91]: Speedcat Pro
+      - 'button "选择装备: Sparco Slalom RB-3" [ref=e92]':
+        - generic [ref=e93]:
+          - img "Sparco Slalom RB-3"
+        - generic [ref=e95]: Slalom RB-3
+      - 'button "选择装备: OMP 赛车徽章" [ref=e96]':
+        - generic [ref=e97]:
+          - img "OMP 赛车徽章"
+        - generic [ref=e99]: Racing Badge
+      - 'button "选择装备: Sparco 车队贴章" [ref=e100]':
+        - generic [ref=e101]:
+          - img "Sparco 车队贴章"
+        - generic [ref=e103]: Team Patch
+      - 'button "选择装备: Alpinestars 赞助商贴纸" [ref=e104]':
+        - generic [ref=e105]:
+          - img "Alpinestars 赞助商贴纸"
+        - generic [ref=e107]: Sponsor Decal
+  - generic [ref=e109]:
+    - generic [ref=e111]: "已装配: 0/14 件装备 (必选: 0/2)"
+    - button "重置所有装备" [ref=e112]: Reset
+```
